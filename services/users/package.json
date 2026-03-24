@@ -1,0 +1,43 @@
+{
+  "name": "qucore-dynamic-auth-users",
+  "description": "Handles user profiles, roles, and statuses, allowing owners to manage employees in their organization.",
+  "version": "1.0.0",
+  "author": "Artem_Zhyto <https://github.com/ArtemZhyto>",
+  "contributors": [
+    "Artem_Zhyto <https://github.com/ArtemZhyto>"
+  ],
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon",
+    "build": "tsc -p tsconfig.json && tsc-alias",
+    "start": "node dist/server.js",
+    "test": "jest --verbose",
+    "go": "npm run build && npm run start"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.1",
+    "express": "^4.18.2",
+    "helmet": "^8.1.0",
+    "ioredis": "^5.7.0",
+    "jsonwebtoken": "^9.0.2",
+    "socket.io": "^4.8.1",
+    "ua-parser-js": "^2.0.7",
+    "uuid": "^13.0.0",
+    "winston": "^3.17.0",
+    "xss": "^1.0.15"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.7.0",
+    "jest": "^30.2.0",
+    "nodemon": "^3.1.10",
+    "prisma": "^7.2.0",
+    "tsc-alias": "^1.8.16",
+    "typescript": "^5.5.4",
+    "tsx": "^4.21.0"
+  }
+}
