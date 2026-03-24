@@ -1,0 +1,69 @@
+name: CI (Build & Test Services)
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  lint:
+    name: Lint (root)
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Install deps
+        run: npm install
+
+      - name: Run lint
+        run: npm run lint
+
+  services:
+    name: Build & Test Services
+    runs-on: ubuntu-latest
+    needs: lint
+
+    strategy:
+      matrix:
+        service: [auth]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      - name: Install root deps
+        run: npm install
+
+      - name: Install service deps
+        run: |
+          cd services/${{ matrix.service }}
+          npm install
+
+      # - name: Prisma generate (if exists)
+      #   run: |
+      #     if [ -d "services/${{ matrix.service }}/prisma" ]; then
+      #       cd services/${{ matrix.service }}
+      #       npx prisma generate
+      #     fi
+
+      # - name: Build service
+      #   working-directory: services/${{ matrix.service }}
+      #   run: npm run build
+
+      - name: Test service
+        working-directory: services/${{ matrix.service }}
+        run: npm test -- --passWithNoTests

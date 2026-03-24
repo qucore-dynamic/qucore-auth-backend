@@ -1,0 +1,6 @@
+**/_EXAMPLES
+**/generated
+**/node_modules
+**/dist
+**/logs
+**/.env
