@@ -8,4 +8,4 @@ const __dirname = path.dirname(__filename)
 
 dotenv.config({ path: path.resolve(__dirname, '../../../docker/.env') })
 
-export const __PORT = process.env.AUTH_SERVICE
+export const __PORT = process.env.USERS_SERVICE

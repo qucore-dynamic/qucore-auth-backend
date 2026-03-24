@@ -3,6 +3,12 @@ services:
     build:
       context: ../services/audit
       dockerfile: dockerfile
+    volumes:
+      - ../services/audit/src:/app/src
+      - ../services/audit/package.json:/app/package.json
+      - ../services/audit/package-lock.json:/app/package-lock.json
+      - ../libs:/app/libs
+    command: npm run dev
     ports:
       - '${AUDIT_SERVICE}:${AUDIT_SERVICE}'
     env_file:
@@ -15,6 +21,12 @@ services:
     build:
       context: ../services/auth
       dockerfile: dockerfile
+    volumes:
+      - ../services/auth/src:/app/src
+      - ../services/auth/package.json:/app/package.json
+      - ../services/auth/package-lock.json:/app/package-lock.json
+      - ../libs:/app/libs
+    command: npm run dev
     ports:
       - '${AUTH_SERVICE}:${AUTH_SERVICE}'
     env_file:
@@ -27,6 +39,12 @@ services:
     build:
       context: ../services/invite
       dockerfile: dockerfile
+    volumes:
+      - ../services/invite/src:/app/src
+      - ../services/invite/package.json:/app/package.json
+      - ../services/invite/package-lock.json:/app/package-lock.json
+      - ../libs:/app/libs
+    command: npm run dev
     ports:
       - '${INVITE_SERVICE}:${INVITE_SERVICE}'
     env_file:
@@ -39,6 +57,12 @@ services:
     build:
       context: ../services/metrics
       dockerfile: dockerfile
+    volumes:
+      - ../services/metrics/src:/app/src
+      - ../services/metrics/package.json:/app/package.json
+      - ../services/metrics/package-lock.json:/app/package-lock.json
+      - ../libs:/app/libs
+    command: npm run dev
     ports:
       - '${METRICS_SERVICE}:${METRICS_SERVICE}'
     env_file:
@@ -51,6 +75,12 @@ services:
     build:
       context: ../services/org
       dockerfile: dockerfile
+    volumes:
+      - ../services/org/src:/app/src
+      - ../services/org/package.json:/app/package.json
+      - ../services/org/package-lock.json:/app/package-lock.json
+      - ../libs:/app/libs
+    command: npm run dev
     ports:
       - '${ORG_SERVICE}:${ORG_SERVICE}'
     env_file:
@@ -63,6 +93,12 @@ services:
     build:
       context: ../services/users
       dockerfile: dockerfile
+    volumes:
+      - ../services/users/src:/app/src
+      - ../services/users/package.json:/app/package.json
+      - ../services/users/package-lock.json:/app/package-lock.json
+      - ../libs:/app/libs
+    command: npm run dev
     ports:
       - '${USERS_SERVICE}:${USERS_SERVICE}'
     env_file:
