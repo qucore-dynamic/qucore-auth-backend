@@ -1,5 +1,6 @@
 // Modules
 import express from 'express'
+import cookieParser from 'cookie-parser'
 
 // Router
 import router from '@routes/router'
@@ -10,6 +11,7 @@ import { __PORT } from './config'
 const app = express()
 
 app.use(express.json())
+app.use(cookieParser())
 
 app.use('/auth/v1', router)
 
