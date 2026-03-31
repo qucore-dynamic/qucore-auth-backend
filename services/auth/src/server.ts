@@ -11,13 +11,18 @@ const app = express()
 
 app.use(express.json())
 
-app.use('/v1/auth', router)
+app.use('/auth/v1', router)
 
-//TODO: create a real handler for the 404 error
 app.use((req, res) => {
   res.status(404).json({
-    status: 'error',
-    message: `Route ${req.originalUrl} not found`,
+    error: {
+      code: 'ROUTE_NOT_FOUND',
+      details: {
+        timestamp: new Date().toISOString(),
+        path: req.originalUrl,
+        method: req.method,
+      },
+    },
   })
 })
 
