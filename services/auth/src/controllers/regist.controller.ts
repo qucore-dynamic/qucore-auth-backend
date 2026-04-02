@@ -12,7 +12,7 @@ import { Request, Response } from 'express'
 
 export const registHandler = (req: Request, res: Response) => {
   const rayID = generateRequestID()
-  const { refreshToken: oldRefreshToken, accessToken: oldAccessToken } = req.cookies
+  const { refreshToken: oldRefreshToken, accessToken: oldAccessToken } = req.signedCookies
 
   if (oldRefreshToken || oldAccessToken) {
     return res.status(403).json({
@@ -38,10 +38,14 @@ export const registHandler = (req: Request, res: Response) => {
     // .cookie('refreshToken', data.refreshToken, {
     //   ...cookieOptions,
     //   maxAge: Number(process.env.REFRESH_AGE),
+    //	 path: '/auth',
+    //	 signed: true,
     // })
     // .cookie('accessToken', data.accessToken, {
     //   ...cookieOptions,
     //   maxAge: Number(process.env.ACCESS_AGE),
+    //	 path: '/',
+    //	 signed: true,
     // })
   } catch (err) {
     //TODO: Error handling

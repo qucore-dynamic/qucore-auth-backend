@@ -19,7 +19,7 @@ if (!cookiesSecret) throw new Error('❌ FATAL: COOKIES_SECRET not found')
 app.use(express.json())
 app.use(cookieParser(cookiesSecret))
 
-app.use('/auth/v1', router)
+app.use('/v1', router)
 
 app.use((req, res) => {
   const rayID = generateRequestID()
