@@ -1,12 +1,8 @@
+// Modules
+import { generateRequestID, throwError, sendResponse } from '@qucore-dynamic/packages'
+
 // Configs
 import { cookieOptions } from '@src/config'
-
-// Libs
-import { generateRequestID } from '@qucore-dynamic/packages'
-
-// Helpers
-import throwError from '@helpers/v1.0.0/answers/throwError'
-import sendResponse from '@helpers/v1.0.0/answers/sendResponse'
 
 // Services
 import { registService } from '@services/v1.0.0/regist.service'
@@ -17,12 +13,18 @@ import { Request, Response } from 'express'
 // Intrefaces
 import { Tokens } from '@ts/interfaces/tokens.interface'
 
+const REFRESH_AGE = Number(process.env.REFRESH_AGE)
+const ACCESS_AGE = Number(process.env.ACCESS_AGE)
+
 export const registHandler = (req: Request, res: Response) => {
   const rayID = generateRequestID()
 
-  const { refreshToken: oldRefreshToken, accessToken: oldAccessToken } = req.signedCookies
+  const { accessToken: oldAccessToken } = req.signedCookies
 
-  if (oldRefreshToken || oldAccessToken)
+  console.log('cookies:', req.cookies)
+  console.log('signedCookies:', req.signedCookies)
+
+  if (oldAccessToken)
     throwError({
       rayID,
       status: 403,
@@ -30,22 +32,29 @@ export const registHandler = (req: Request, res: Response) => {
       message: 'User is already registered',
     })
 
-  //TODO: Call the registration service
   const data: Tokens = registService()
 
   return sendResponse(res, {
-    code: 'OK',
+    message: 'User has been successfully registed',
+    cookies: [
+      {
+        name: 'refreshToken',
+        value: data.refreshToken,
+        options: {
+          ...cookieOptions,
+          maxAge: REFRESH_AGE,
+          path: '/v1.0.0/tokens-refresh',
+        },
+      },
+      {
+        name: 'accessToken',
+        value: data.accessToken,
+        options: {
+          ...cookieOptions,
+          maxAge: ACCESS_AGE,
+          path: '/',
+        },
+      },
+    ],
   })
-  //   .cookie('refreshToken', data.refreshToken, {
-  //     ...cookieOptions,
-  //     maxAge: Number(process.env.REFRESH_AGE),
-  //     path: '/v1.0.0/tokens-refresh',
-  //     signed: true,
-  //   })
-  //   .cookie('accessToken', data.accessToken, {
-  //     ...cookieOptions,
-  //     maxAge: Number(process.env.ACCESS_AGE),
-  //     path: '/',
-  //     signed: true,
-  //   })
 }

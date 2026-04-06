@@ -4,8 +4,6 @@ import { __PORT } from './config'
 // Modules
 import express, { NextFunction, Request, Response } from 'express'
 import cookieParser from 'cookie-parser'
-
-// Libs
 import { generateRequestID } from '@qucore-dynamic/packages'
 
 // Router

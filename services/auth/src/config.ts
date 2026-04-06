@@ -12,4 +12,5 @@ export const cookieOptions = {
   sameSite: (isProd ? 'strict' : 'lax') as 'strict' | 'lax',
   secure: isProd,
   ...(isProd && { domain: '.qucore.io' }),
+  signed: true,
 }
