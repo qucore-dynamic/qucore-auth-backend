@@ -21,7 +21,7 @@
 
 ```bash
 # Clone repository
-git clone https://github.com/your-username/qucore-auth-backend.git
+git clone https://github.com/qucore-dynamic/qucore-auth-backend.git
 cd qucore-auth-backend
 
 # Install dependencies
