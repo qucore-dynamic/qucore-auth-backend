@@ -15,7 +15,7 @@
     "go": "npm run build && npm run start"
   },
   "dependencies": {
-    "@qucore-dynamic/packages": "^1.0.6-alpha.3",
+    "@qucore-dynamic/packages": "^1.0.0-alpha.2",
     "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^17.2.1",
