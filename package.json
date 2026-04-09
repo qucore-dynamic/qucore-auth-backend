@@ -12,16 +12,18 @@
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "format": "prettier --write .",
-    "test": "jest",
+    "test": "jest --verbose --passWithNoTests",
     "i:all": "npm i & npm i --prefix services/auth & npm i --prefix services/audit & npm i --prefix services/invite & npm i --prefix services/metrics & npm i --prefix services/org & npm i --prefix services/users"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
+    "@jest/globals": "^30.3.0",
     "@types/jest": "^30.0.0",
     "eslint": "^9.9.0",
     "globals": "^17.4.0",
     "jest": "^30.2.0",
     "prettier": "^3.3.3",
+    "ts-jest": "^29.4.9",
     "typescript-eslint": "^8.4.0"
   }
 }

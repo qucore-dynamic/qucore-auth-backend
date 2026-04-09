@@ -11,6 +11,7 @@
     "sourceMap": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
+    "isolatedModules": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "typeRoots": ["./node_modules/@types", "../../node_modules/@types"],
@@ -26,7 +27,7 @@
       "@src/*": ["./src/*"],
       "@ts/*": ["./ts/*"]
     },
-    "types": ["node"]
+    "types": ["node", "jest"]
   },
   "include": ["src/**/*", "ts/**/*", "tests/**/*", "prisma.config.ts"],
   "exclude": ["node_modules", "dist"]
