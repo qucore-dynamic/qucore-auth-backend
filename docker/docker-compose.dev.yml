@@ -7,6 +7,10 @@ services:
       - ../services/audit/src:/app/services/audit/src
       - ../services/audit/package.json:/app/services/audit/package.json
       - ../services/audit/package-lock.json:/app/services/audit/package-lock.json
+      - /app/node_modules
+      - /app/dist
+      - /app/node_modules
+      - /app/dist
     command: npm run dev # Use dev for hot-reloading during development
     ports:
       - '${AUDIT_SERVICE}:${AUDIT_SERVICE}'
@@ -22,6 +26,8 @@ services:
       - ../services/auth/src:/app/services/auth/src
       - ../services/auth/package.json:/app/services/auth/package.json
       - ../services/auth/package-lock.json:/app/services/auth/package-lock.json
+      - /app/node_modules
+      - /app/dist
     command: npm run dev # Use dev for hot-reloading during development
     ports:
       - '${AUTH_SERVICE}:${AUTH_SERVICE}'
@@ -37,6 +43,8 @@ services:
       - ../services/invite/src:/app/services/invite/src
       - ../services/invite/package.json:/app/services/invite/package.json
       - ../services/invite/package-lock.json:/app/services/invite/package-lock.json
+      - /app/node_modules
+      - /app/dist
     command: npm run dev # Use dev for hot-reloading during development
     ports:
       - '${INVITE_SERVICE}:${INVITE_SERVICE}'
@@ -52,6 +60,8 @@ services:
       - ../services/metrics/src:/app/services/metrics/src
       - ../services/metrics/package.json:/app/services/metrics/package.json
       - ../services/metrics/package-lock.json:/app/services/metrics/package-lock.json
+      - /app/node_modules
+      - /app/dist
     command: npm run dev # Use dev for hot-reloading during development
     ports:
       - '${METRICS_SERVICE}:${METRICS_SERVICE}'
@@ -67,6 +77,8 @@ services:
       - ../services/org/src:/app/services/org/src
       - ../services/org/package.json:/app/services/org/package.json
       - ../services/org/package-lock.json:/app/services/org/package-lock.json
+      - /app/node_modules
+      - /app/dist
     command: npm run dev # Use dev for hot-reloading during development
     ports:
       - '${ORG_SERVICE}:${ORG_SERVICE}'
@@ -82,6 +94,8 @@ services:
       - ../services/users/src:/app/services/users/src
       - ../services/users/package.json:/app/services/users/package.json
       - ../services/users/package-lock.json:/app/services/users/package-lock.json
+      - /app/node_modules
+      - /app/dist
     command: npm run dev # Use dev for hot-reloading during development
     ports:
       - '${USERS_SERVICE}:${USERS_SERVICE}'
